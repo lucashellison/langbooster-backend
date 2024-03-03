@@ -45,7 +45,7 @@ class ContactController extends Controller
             'html'    => $html
         ]);
 
-        dd($result);
+
 
 
 
@@ -59,6 +59,8 @@ class ContactController extends Controller
             'subject' => "Thank You for Contacting LangBooster!",
             'html'    => $html
         ]);
+
+        dd('here');
 
 
         // Resposta após o envio do e-mail
