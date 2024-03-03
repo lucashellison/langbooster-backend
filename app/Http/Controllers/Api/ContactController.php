@@ -45,6 +45,8 @@ class ContactController extends Controller
             'html'    => $html
         ]);
 
+        dd($result);
+
 
 
         $markdown = new \Illuminate\Mail\Markdown(view(), config('mail.markdown'));
