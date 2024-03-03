@@ -60,8 +60,6 @@ class ContactController extends Controller
             'html'    => $html
         ]);
 
-        dd('here');
-
 
         // Resposta após o envio do e-mail
         if ($result) {
