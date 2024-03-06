@@ -26,18 +26,18 @@ class NumberController extends Controller
 
 
         $validated = $request->validate([
-            'userInput' => ['required','string','max:255'],
+            'userInput' => ['nullable','string','max:255'],
             'numberId' => 'required|integer|exists:number,id',
             'userNumberId' => 'nullable|integer|exists:user_number,id',
             'guestNumberId' => 'nullable|integer|exists:guest_number,id',
         ]);
 
-        $userInput = $validated['userInput'];
+        $userInput = $validated['userInput'] ?? null;
         $numberId = $validated['numberId'];
         $userNumberId = $validated['userNumberId'] ?? null;
         $guestNumberId = $validated['guestNumberId'] ?? null;
 
-        $userInput = strip_tags($validated['userInput']);
+        $userInput = $userInput ? strip_tags($validated['userInput']) : null;
 
         $checkAnswerRepository = new CheckAnswerRepository();
 

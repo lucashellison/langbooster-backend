@@ -27,19 +27,19 @@ class ListeningController extends Controller
 
 
         $validated = $request->validate([
-            'userInput' => ['required','string','max:255',new WordsCount(3)],
+            'userInput' => ['nullable','string','max:255'],
             'listeningId' => 'required|integer|exists:listening,id',
             'userListeningId' => 'nullable|integer|exists:user_listening,id',
             'guestListeningId' => 'nullable|integer|exists:guest_listening,id',
         ]);
 
-        $userInput = $validated['userInput'];
+        $userInput = $validated['userInput'] ?? null;
         $listeningId = $validated['listeningId'];
         $userListeningId = $validated['userListeningId'] ?? null;
         $guestListeningId = $validated['guestListeningId'] ?? null;
 
 
-        $userInput = strip_tags($validated['userInput']);
+        $userInput = $userInput ? strip_tags($validated['userInput']) : null;
 
 
         $checkAnswerRepository = new CheckAnswerRepository();
