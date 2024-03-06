@@ -242,32 +242,38 @@ class CheckAnswerRepository
     {
 
 
-        $userInput = preg_replace('/[^0-9,.]/', '', $userInput);
+        if($userInput){
+            $userInput = preg_replace('/[^0-9,.]/', '', $userInput);
+            $userInput = str_replace('.',',',$userInput);
 
-        $userInput = str_replace('.',',',$userInput);
+            if (!strpos($userInput, ',') !== false) {
+                $userInput = preg_replace('/[^0-9]/', '', $userInput);
+                $userInput = number_format((float) $userInput, 0, '.', ',');
+            }
+
+            $correctText = preg_replace('/[^0-9]/', '', $correctText);
+            $correctText = number_format((float) $correctText, 0, '.', ',');
+
+            $granularity = FineDiff::$wordGranularity;
+
+            $diff = new FineDiff(strtolower($userInput), strtolower($correctText), $granularity);
+            $differences = $diff->renderDiffToHTML();
 
 
-        if (!strpos($userInput, ',') !== false) {
-            $userInput = preg_replace('/[^0-9]/', '', $userInput);
-            $userInput = number_format((float) $userInput, 0, '.', ',');
+            $differences = preg_replace('/<ins>.*?<\/ins>/', '', $differences);
+
+            $differences = str_replace(' </del>','</del> ',$differences);
+
+
+            $correct = !strpos($differences, 'del') !== false;
+        }else{
+            $differences = "";
+            $correct = false;
         }
 
-        $correctText = preg_replace('/[^0-9]/', '', $correctText);
-        $correctText = number_format((float) $correctText, 0, '.', ',');
-
-        $granularity = FineDiff::$wordGranularity;
 
 
-        $diff = new FineDiff(strtolower($userInput), strtolower($correctText), $granularity);
-        $differences = $diff->renderDiffToHTML();
 
-
-        $differences = preg_replace('/<ins>.*?<\/ins>/', '', $differences);
-
-        $differences = str_replace(' </del>','</del> ',$differences);
-
-
-        $correct = !strpos($differences, 'del') !== false;
 
         return [
             'differences' => $differences,
