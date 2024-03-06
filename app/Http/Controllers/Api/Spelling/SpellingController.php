@@ -26,18 +26,18 @@ class SpellingController extends Controller
 
 
         $validated = $request->validate([
-            'userInput' => ['required','string','max:255',new WordsCount(1)],
+            'userInput' => ['nullable','string','max:255'],
             'spellingId' => 'required|integer|exists:spelling,id',
             'userSpellingId' => 'nullable|integer|exists:user_spelling,id',
             'guestSpellingId' => 'nullable|integer|exists:guest_spelling,id',
         ]);
 
-        $userInput = $validated['userInput'];
+        $userInput = $validated['userInput'] ?? null;
         $spellingId = $validated['spellingId'];
         $userSpellingId = $validated['userSpellingId'] ?? null;
         $guestSpellingId = $validated['guestSpellingId'] ?? null;
 
-        $userInput = strip_tags($validated['userInput']);
+        $userInput = $userInput ? strip_tags($validated['userInput']) : null;
 
 
         $checkAnswerRepository = new CheckAnswerRepository();

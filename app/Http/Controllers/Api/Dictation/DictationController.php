@@ -26,18 +26,18 @@ class DictationController extends Controller
     {
 
         $validated = $request->validate([
-            'userInput' => ['required','string','max:1500',new WordsCount(10)],
+            'userInput' => ['nullable','string','max:1500'],
             'dictationId' => 'required|integer|exists:dictations,id',
             'userDictationId' => 'nullable|integer|exists:user_dictations,id',
             'guestDictationId' => 'nullable|integer|exists:guest_dictations,id',
         ]);
 
-        $userInput = $validated['userInput'];
+        $userInput = $validated['userInput'] ?? null;
         $dictationId = $validated['dictationId'];
         $userDictationId = $validated['userDictationId'] ?? null;
         $guestDictationId = $validated['guestDictationId'] ?? null;
 
-        $userInput = strip_tags($validated['userInput']);
+        $userInput = $userInput ? strip_tags($validated['userInput']) : null;
 
 
         $checkAnswerRepository = new CheckAnswerRepository();

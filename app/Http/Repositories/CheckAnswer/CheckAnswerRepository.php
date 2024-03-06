@@ -9,7 +9,7 @@ use PhpParser\Node\Expr\Array_;
 
 class CheckAnswerRepository
 {
-    public function getComparisonResult(string $correctText, string $userInput)
+    public function getComparisonResult(string $correctText, string $userInput=null)
     {
 
         $totalWords = $this->getNumberOfWords($correctText);
