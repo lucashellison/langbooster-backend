@@ -2,20 +2,6 @@
 
 Welcome to the LangBooster repository! LangBooster is an innovative online platform dedicated to assisting individuals in mastering English. With a focus on interactive learning through listening, dictation, spelling, and numerical exercises, we provide a comprehensive set of tools to enhance your English proficiency.
 
-## Table of Contents
-
-- [Features](#features)
-- [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-- [Usage](#usage)
-- [Running Tests](#running-tests)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Authors](#authors)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
-
 ## Features
 
 - Listening Module with over 2000 phrases
@@ -23,6 +9,10 @@ Welcome to the LangBooster repository! LangBooster is an innovative online platf
 - Spelling Module to turn learners into word wizards
 - Numbers Module for mastering numerical English
 - Premium Plan for advanced and dedicated language learning
+
+
+## Visit the Website
+https://www.langbooster.com/
 
 ## Getting Started
 
@@ -91,3 +81,5 @@ php artisan test
 
 ### Author
 Lucas Camargo
+
+
