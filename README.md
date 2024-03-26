@@ -32,7 +32,7 @@ Ensure you have the following installed:
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/langbooster.git
+git clone https://github.com/lucashellison/langbooster-backend.git
 ```
 
 Navigate to the project directory:
